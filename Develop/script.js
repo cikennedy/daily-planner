@@ -1,4 +1,6 @@
-// Set up hours and times from moment 
+//Could not figure out how to get the localStorage to work even with heavy references to the two GitHub links that I used for assistance. Need to go over this to make sure I understand it and it works moving forward 
+
+// Set up hours and times. Unsure if this is the correct way to do this as I have seen conflicting ways to do this, however this did make sense to me given previous exercises. 
 var myDay = [
     {
         id: "0",
@@ -53,7 +55,7 @@ var myDay = [
         id: "7",
         hour: "04",
         time: "16",
-        meridiem: "pm",
+        ampm: "pm",
         reminder: ""
     },
     {
@@ -66,17 +68,59 @@ var myDay = [
     
 ]
 
-// Create function for the date 
+// Create function for the date referencing moment and the current day  
 
 function getHeaderDate() {
     var currentHeaderDate = moment().format("dddd, MMMM Do"); 
     $("#currentDay").text(currentHeaderDate);
 }
 
-// Create function to save to local storage 
-function saveReminders() {
-    localStorage.setItem("myDay", JSON.stringify(myDay));
-}
+// Creates header date 
+getHeaderDate();
 
-// Add Font Awesome icon
+// For each hour of the day, the below makes the timeblocks appear. jQuery utilized 
+myDay.forEach(function(thisHour) {
+   
+    var hourRow = $("<form>").attr({
+        "class": "row"
+    });
+    $(".container").append(hourRow);
+
+    var hourField = $("<div>")
+        .text(`${thisHour.hour}${thisHour.ampm}`)
+        .attr({
+            "class": "col-md-2 hour"
+    });
+
+    var hourPlan = $("<div>")
+        .attr({
+            "class": "col-md-9 description p-0"
+        });
+    var planData = $("<textarea>");
+    hourPlan.append(planData);
+    planData.attr("id", thisHour.id);
+    if (thisHour.time < moment().format("HH")) {
+        planData.attr ({
+            "class": "past", 
+        })
+    } else if (thisHour.time === moment().format("HH")) {
+        planData.attr({
+            "class": "present"
+        })
+    } else if (thisHour.time > moment().format("HH")) {
+        planData.attr({
+            "class": "future"
+        })
+    }
+
+    // Creates save button and references the font awesome icon used 
+    var saveButton = $("<i class='far fa-save'></i>")
+    var savePlan = $("<button>")
+        .attr({
+            "class": "col-md-1 saveBtn"
+    });
+    savePlan.append(saveButton);
+    hourRow.append(hourField, hourPlan, savePlan);
+})
+
 
