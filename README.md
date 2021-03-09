@@ -4,7 +4,7 @@
 
 This is an application for a daily planner. The user sees the current date and can save events to timeblocks for the standard business hours for the day. The user does this by entering a text description for the event for the given timeblock and then clicking the save icon next to the time block. The time blocks are color coded to indicate whether the event is in the past, present, or future. 
 
-Link: 
+Link: https://cikennedy.github.io/homework05/ 
 
 ## Usage 
 

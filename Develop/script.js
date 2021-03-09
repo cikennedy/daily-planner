@@ -78,7 +78,7 @@ function getHeaderDate() {
 // Creates header date 
 getHeaderDate();
 
-// For each hour of the day, the below makes the timeblocks appear. jQuery utilized 
+// For each hour of the day, the below makes the timeblocks appear. jQuery utilized and referenced in GitHub links provided in ReadMe. 
 myDay.forEach(function(thisHour) {
    
     var hourRow = $("<form>").attr({
